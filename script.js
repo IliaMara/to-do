@@ -1,6 +1,10 @@
 const toDoItems = document.getElementsByClassName("to-do-items")[0];
 const input = document.getElementById("input");
 
+const greenColor = "lightgreen";
+const lightGrayColor = "lightgray";
+const darkGrayColor = "darkgray";
+
 input.addEventListener("keydown", function (event){
     if (event.key === "Enter")
         addItem();
@@ -16,19 +20,19 @@ function addItem(){
     divParent.innerHTML = "<div>" + input.value + "</div>";
 
     checkIcon.className = "fas fa-check-square";
-    checkIcon.style.color = "lightgray";
+    checkIcon.style.color = lightGrayColor;
     checkIcon.addEventListener("click", function (){
-        if (checkIcon.style.color === "lightgray") {
-            checkIcon.style.color = "lightgreen";
+        if (checkIcon.style.color === lightGrayColor) {
+            checkIcon.style.color = greenColor;
         } else {
-            checkIcon.style.color = "lightgray";
+            checkIcon.style.color = lightGrayColor;
         }
     })
 
     divChild.appendChild(checkIcon);
 
     trashIcon.className = "fas fa-trash";
-    trashIcon.style.color = "darkgray";
+    trashIcon.style.color = darkGrayColor;
     trashIcon.addEventListener("click", function (){
         divParent.remove();
     })
