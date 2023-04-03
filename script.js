@@ -9,10 +9,23 @@ input.addEventListener("keydown", function (event){
 function addItem(){
     let divParent = document.createElement("div");
     let divChild = document.createElement("div");
+    let checkIcon = document.createElement("i");
     let trashIcon = document.createElement("div");
 
     divParent.className = "item";
     divParent.innerHTML = "<div>" + input.value + "</div>";
+
+    checkIcon.className = "fas fa-check-square";
+    checkIcon.style.color = "lightgray";
+    checkIcon.addEventListener("click", function (){
+        if (checkIcon.style.color === "lightgray") {
+            checkIcon.style.color = "lightgreen";
+        } else {
+            checkIcon.style.color = "lightgray";
+        }
+    })
+
+    divChild.appendChild(checkIcon);
 
     trashIcon.className = "fas fa-trash";
     trashIcon.style.color = "darkgray";
