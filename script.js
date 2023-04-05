@@ -34,6 +34,11 @@ function switchStatus(id) {
     updateTodoDocument();
 }
 
+function saveEditedItem(id, newDescription){
+    TODOS.filter(todo => todo.id === id)
+        .forEach(todo => todo.description = newDescription);
+    updateTodoDocument();
+}
 
 function updateTodoDocument() {
     let children = [];
@@ -41,8 +46,9 @@ function updateTodoDocument() {
         let divParent = document.createElement("div");
         let divChild = document.createElement("div");
 
-        let trashIcon = document.createElement("div");
+        let trashIcon = document.createElement("i");
         let checkIcon = document.createElement("i");
+        let editIcon = document.createElement("i");
 
         trashIcon.className = "fas fa-trash";
         trashIcon.style.color = darkGrayColor;
@@ -60,6 +66,14 @@ function updateTodoDocument() {
 
         divChild.appendChild(checkIcon);
 
+        editIcon.className = "fa-solid fa-pen-to-square";
+        editIcon.style.color = lightGrayColor;
+        editIcon.addEventListener("click", function (){
+            editItem(todo.id, divParent);
+        })
+
+        divChild.appendChild(editIcon);
+
         divParent.className = "item";
         divParent.innerHTML = todo.description;
 
@@ -71,7 +85,22 @@ function updateTodoDocument() {
     console.log(TODOS);
 }
 
+function editItem(id, divParent) {
+    let inputItem = document.createElement("input");
+    inputItem.id = "input";
+    inputItem.value = divParent.textContent;
+    inputItem.className = "item";
+
+    inputItem.addEventListener("keydown", function (event){
+        if (event.key === "Enter") {
+            saveEditedItem(id, inputItem.value);
+        }
+    });
+
+    toDoItems.replaceChild(inputItem, divParent);
+    inputItem.select();
+}
+
 function uid(){
     return Date.now().toString(36) + Math.random().toString(36).substr(2);
 }
-
