@@ -33,7 +33,7 @@ body{
     text-align: center;
 }
 
-.user-input input{
+input{
     width: 80%;
     outline: none;
     padding: 8px;
@@ -46,7 +46,7 @@ body{
     -o-transition: all 0.30s ease-in-out;
     transition: all 0.30s ease-in-out;
 }
-.user-input input:focus{
+input:focus{
     box-shadow: 0 0 5px #E22865;
     border: 1px solid #E22865;
 }
